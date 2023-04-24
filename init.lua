@@ -68,17 +68,13 @@ return {
   -- augroups/autocommands and custom filetypes also this just pure lua so
   -- anything that doesn't fit in the normal config locations above can go here
   polish = function()
-    -- Set up custom filetypes
-    -- vim.filetype.add {
-    --   extension = {
-    --     foo = "fooscript",
-    --   },
-    --   filename = {
-    --     ["Foofile"] = "fooscript",
-    --   },
-    --   pattern = {
-    --     ["~/%.config/foo/.*"] = "fooscript",
-    --   },
-    -- }
+    local hop = require('hop')
+    local directions = require('hop.hint').HintDirection
+
+    vim.keymap.set('n', '<leader><leader>w', function() hop.hint_words() end, {remap=true})
+    vim.keymap.set('n', '<leader><leader>f', function() hop.hint_patterns({direction = directions.AFTER_CURSOR}) end, {remap=true})
+    vim.keymap.set('n', '<leader><leader>F', function() hop.hint_patterns({direction = directions.BEFORE_CURSOR}) end, {remap=true})
+    vim.keymap.set('n', '<leader><leader>j', function() hop.hint_lines_skip_whitespace({direction = directions.AFTER_CURSOR}) end, {remap=true})
+    vim.keymap.set('n', '<leader><leader>k', function() hop.hint_lines_skip_whitespace({direction = directions.BEFORE_CURSOR}) end, {remap=true})
   end,
 }

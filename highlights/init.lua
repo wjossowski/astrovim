@@ -1,3 +1,4 @@
 return { -- this table overrides highlights in all themes
-  -- Normal = { bg = "#000000" },
+  -- Normal = { bg = "None" },
+  -- Normal = { bg = "None", ctermbg = "None"},
 }
